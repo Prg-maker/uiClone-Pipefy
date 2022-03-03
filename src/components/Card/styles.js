@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 
 export const Container = styled.div`
@@ -33,7 +33,14 @@ export const Container = styled.div`
 
 
 
+
+}
+
+
 `
+
+
+
 
 export const Label = styled.label`
   width: 10px;
@@ -44,3 +51,13 @@ export const Label = styled.label`
   background: ${props => props.color}
 
 `
+
+/*
+border:2px dashed rgba(0, 0, 0, 0.2);
+padding-top: 31px;
+border-radius: 0;
+background: transparent;
+box-shadow: none;
+cursor: grabbing;
+
+*/

@@ -1,17 +1,42 @@
 import { Container, Label } from './styles'
+import { css } from 'styled-components'
 
-export function Card() {
+import { useDrag } from 'react-dnd'
+
+
+
+export function Card({ data }) {
+
+  const text = data.content
+
+  const [{ opacity, color }, dragRef] = useDrag(() => ({
+    type: 'CARD',
+    item: { text },
+    collect: (monitor) => ({
+      opacity: monitor.isDragging() ? 0 : 1,
+      color: monitor.isDragging() ? '#ff' : ''
+    })
+
+  }), [])
+
+
   return (
 
-    <Container>
+
+
+    <Container ref={dragRef} style={{ opacity, color }} >
       <header>
-        <Label color="#7159c1" />
+        {data.labels.map(label => {
+          return (
+            <Label key={label} color={label} />
+          )
+        })}
       </header>
 
-      <p>Fazer a nigralçao completa de servidor</p>
-      <img src="https://github.com/Prg-Maker.png" />
+      <p>{data.content}</p>
+      {data.user && <img src={data.user} />}
 
-    </Container>
+    </Container >
 
   )
 }
