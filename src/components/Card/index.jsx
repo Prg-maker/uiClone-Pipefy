@@ -9,22 +9,24 @@ export function Card({ data }) {
 
   const text = data.content
 
-  const [{ opacity, color }, dragRef] = useDrag(() => ({
+  const [{ opacity, isDragging }, dragRef] = useDrag(() => ({
     type: 'CARD',
     item: { text },
     collect: (monitor) => ({
-      opacity: monitor.isDragging() ? 0 : 1,
-      color: monitor.isDragging() ? '#ff' : ''
+      isDragging: monitor.isDragging()
+
     })
 
   }), [])
+
+
 
 
   return (
 
 
 
-    <Container ref={dragRef} style={{ opacity, color }} >
+    <Container ref={dragRef} style={{ opacity }} isDragging={isDragging} >
       <header>
         {data.labels.map(label => {
           return (
